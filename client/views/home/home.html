@@ -1,0 +1,23 @@
+<template name="home">
+  <div class="container">
+
+    <div class="row center-align">
+      {{#each stats}}
+        {{> statCount }}
+      {{/each}}
+    </div>
+
+    <div class="chart">{{> highchartsHelper chartId="messageCount" chartObject=messageCount}}</div>
+    <div class="chart">{{> highchartsHelper chartId="imageCount" chartObject=imageCount}}</div>
+    <div class="chart">{{> highchartsHelper chartId="dayCount" chartObject=dayCount}}</div>
+    <div class="chart">{{> highchartsHelper chartId="monthCount" chartObject=monthCount}}</div>
+  </div>
+
+</template>
+
+<template name="statCount">
+  <div class="col s2">
+    <h3 class='statistic-value'>{{count}}</h3>
+    <span class='statistic-name'>{{user}}</span>
+  </div>
+</template>
