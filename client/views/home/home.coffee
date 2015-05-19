@@ -18,12 +18,21 @@ Template.home.helpers
       stats[short]['count'] = array.length
       stats[short]['imageCount'] = _.where(array, text: '<image omitted>').length
 
+    # Hour Chart
+    categories = _.range(24)
+
+    series = _.map grouped, (array, user) ->
+      hourCount = _.countBy array, (message) -> message.time.getHours()
+      name: user, data: _.map categories, (hour) -> hourCount[hour] || 0
+
+    charts.hourCount = categories: categories, series: series
+
     # Day Chart
     categories = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
     series = _.map grouped, (array, user) ->
       dayCount = _.countBy array, (message) -> message.time.getDay()
-      name: user, data: _.sortBy dayCount, (value, day) -> day
+      name: user, data: _.map categories, (day, index) -> dayCount[index]
 
     charts.dayCount = categories: categories, series: series
 
@@ -52,12 +61,16 @@ Template.home.helpers
   messageCount: ->
     stats = Session.get('stats')
     data = _.map stats, (stat) -> [stat.user, stat.count]
-    pieChart(data)
+    pieChart('Messages Sent', data)
 
   imageCount: ->
     stats = Session.get('stats')
     data = _.map stats, (stat) -> [stat.user, stat.imageCount]
-    pieChart(data)
+    pieChart('Images Sent', data)
+
+  hourCount: ->
+    chart = Session.get('charts').hourCount
+    stackChart('Hourly Messages', chart.categories, chart.series)
 
   dayCount: ->
     chart = Session.get('charts').dayCount

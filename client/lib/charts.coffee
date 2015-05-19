@@ -1,11 +1,11 @@
 root = exports ? this
 
-root.pieChart = (data) ->
+root.pieChart = (title, data) ->
   chart:
     plotBackgroundColor: null
     plotBorderWidth: null
     plotShadow: false
-  title: text: 'Messages Sent'
+  title: text: title
   tooltip: pointFormat: '<b>{point.percentage:.1f}%</b>'
   plotOptions: pie:
     allowPointSelect: true
