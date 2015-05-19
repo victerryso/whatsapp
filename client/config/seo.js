@@ -1,5 +1,5 @@
 SEO.config({
-  title: Meteor.App.NAME,
+  title: 'Whatsapp',
   meta: {
     'description': Meteor.App.DESCRIPTION
   }

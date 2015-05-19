@@ -36,3 +36,25 @@ root.columnChart = (categories, series) ->
     pointPadding: 0.2
     borderWidth: 0
   series: series
+
+root.stackChart = (title, categories, series) ->
+  chart: type: 'column'
+  title: text: title
+  xAxis: categories: categories
+  yAxis:
+    min: 0
+    title: text: 'Messages Sent'
+  legend:
+    align: 'right'
+    x: -30
+    verticalAlign: 'top'
+    y: 25
+    floating: true
+    backgroundColor: Highcharts.theme and Highcharts.theme.background2 or 'white'
+    borderColor: '#CCC'
+    borderWidth: 1
+    shadow: false
+  tooltip: formatter: ->
+    '<b>' + @x + '</b><br/>' + @series.name + ': ' + @y + '<br/>' + 'Total: ' + @point.stackTotal
+  plotOptions: column: stacking: 'normal'
+  series: series

@@ -6,7 +6,6 @@
         {{> statCount }}
       {{/each}}
     </div>
-
     <div class="chart">{{> highchartsHelper chartId="messageCount" chartObject=messageCount}}</div>
     <div class="chart">{{> highchartsHelper chartId="imageCount" chartObject=imageCount}}</div>
     <div class="chart">{{> highchartsHelper chartId="dayCount" chartObject=dayCount}}</div>
@@ -16,7 +15,7 @@
 </template>
 
 <template name="statCount">
-  <div class="col s2">
+  <div class="col s12 m6 l4">
     <h3 class='statistic-value'>{{count}}</h3>
     <span class='statistic-name'>{{user}}</span>
   </div>
