@@ -2,10 +2,20 @@
   <div class="container">
 
     <div class="row center-align">
+
+      <h3 class='total-statistic-value'>{{total}}</h3>
+      <p class='statistic-name'>Total Number of Messages Sent since
+        <br>
+        <h4 style='color: #000'>{{firstDate}}</h4>
+      </p>
+
       {{#each stats}}
         {{> statCount }}
       {{/each}}
     </div>
+
+    <div class="divider"></div>
+
     <div class="chart">{{> highchartsHelper chartId="messageCount" chartObject=messageCount}}</div>
     <div class="chart">{{> highchartsHelper chartId="imageCount" chartObject=imageCount}}</div>
     <div class="chart">{{> highchartsHelper chartId="hourCount" chartObject=hourCount}}</div>
